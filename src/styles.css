@@ -1,0 +1,840 @@
+:root {
+  --bg-top: #fffefc;
+  --bg-bottom: #fbefec;
+  --accent-1: #c44a34;
+  --accent-2: #0d1b2a;
+  --accent-3: #21311f;
+  --muted: #6b6b6b;
+}
+
+* {
+  box-sizing: border-box;
+}
+html,
+body,
+#root {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: "Josefin Sans", system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial;
+  /* Updated background: white to #E49625 with a stop at 67% */
+  background: linear-gradient(180deg, #ffffff 1%, #f9dfbd 99%);
+  color: #111;
+}
+.container {
+  /* increased max-width so content can spread further across large screens */
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 40px;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.logo h1 {
+  font-size: 56px;
+  margin: 0;
+  font-weight: 300;
+}
+
+.navlinks {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+}
+.navlinks a {
+  color: #333;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+/* Hero */
+.hero {
+  display: flex;
+  gap: 40px;
+  /* position hero content towards the top so the title sits higher on the page */
+  align-items: flex-start;
+  /* slightly reduce top/bottom padding so content moves up a bit */
+  padding: 10em 100px;
+  /* keep the hero tall but not fully centered to give breathing room */
+  min-height: 85vh;
+}
+.hero-left {
+  /* keep the hero left column width (approx) so the title/quote have room */
+  flex: 0 0 70%;
+}
+.hero-title {
+  font-size: 10em;
+  font-weight: 1;
+  margin: 8px 0;
+}
+.hero-quote {
+  color: #8b5a4b;
+  font-size: 30px;
+  font-weight: 395;
+  margin: 16px 0 40px;
+  padding: 35px;
+}
+
+/* Keep the hero quote on a single line on wide screens while allowing normal wrapping on small screens */
+.hero-quote {
+  white-space: nowrap;
+  overflow: visible;
+}
+.hero-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 5em;
+  max-width: 400px;
+}
+.btn {
+  display: inline-block;
+  padding: 10px 22px;
+  border-radius: 22px;
+  border: 1px solid #cfcfcf;
+  background: transparent;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Ensure link-like buttons don't use browser link color/underline */
+.btn,
+.btn:visited {
+  color: #111;
+  text-decoration: none;
+}
+
+/* Menu with hover popups for hero buttons */
+.menu {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.main-btn {
+  min-width: 100px;
+  max-width: 144px;
+  text-align: left;
+  /* make sure main button text stays black even when it's an anchor */
+  color: #111;
+  font-size: 20px; /* ~16px * 1.2 = 19.2 */
+  padding: 12px 26px; /* slightly larger padding */
+  border-radius: 26px;
+  transition: transform 200ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 200ms ease;
+  transform-origin: left center;
+}
+.main-btn:hover,
+.menu:hover .main-btn,
+.main-btn:focus {
+  transform: translateY(-4px) scale(1.2);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+}
+.main-btn:active {
+  transform: translateY(-2px) scale(2);
+}
+
+.submenu {
+  position: absolute;
+  left: 175px; /* places sub-options to the right of the main button */
+  top: 50%;
+  /* start slightly inset and scaled down for a subtle pop-in */
+  transform: translateY(-50%) translateX(-6px) scale(0.96);
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 200ms ease;
+  transform-origin: left center;
+}
+
+.menu:hover .submenu,
+.menu:focus-within .submenu {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(-50%) translateX(0) scale(1);
+}
+
+/* pop each submenu item slightly when shown to give a subtle stagger */
+.menu:hover .sub-btn,
+.menu:focus-within .sub-btn {
+  transform: translateY(-2px) scale(1.02);
+  transition: transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.sub-btn {
+  background: transparent;
+  border: none;
+  color: #4b3b35;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 6px 8px;
+  text-decoration: none;
+  display: inline-block;
+  transform: none;
+}
+
+/* animated border pop for submenu items */
+.sub-btn {
+  position: relative;
+  padding: 8px 10px;
+  border-radius: 8px;
+  transition: transform 200ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 200ms ease, color 160ms ease;
+}
+.sub-btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 8px;
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.06);
+  transition: box-shadow 200ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    transform 200ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  pointer-events: none;
+}
+.sub-btn:hover,
+.sub-btn:focus {
+  transform: translateY(-3px) scale(1.03);
+  color: #111;
+}
+.sub-btn:hover::after,
+.sub-btn:focus::after {
+  box-shadow: 0 6px 0 0 rgba(0, 0, 0, 0.06), 0 0 0 3px rgba(180, 150, 120, 0.12);
+}
+
+/* Make submenu stack on small screens */
+@media (max-width: 900px) {
+  .hero-buttons {
+    gap: 12px;
+  }
+  .menu {
+    width: 100%;
+  }
+  .submenu {
+    position: static;
+    transform: none;
+    opacity: 1;
+    pointer-events: auto;
+    display: none; /* keep collapsed on small screens unless expanded by interaction */
+    margin-left: 6px;
+    gap: 12px;
+  }
+  .menu:active .submenu,
+  .menu:focus-within .submenu {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+/* Right vertical icons */
+.side-icons {
+  /* ensure the right-side vertical icons sit at the far right of the hero area
+     and have a bit more visual width on large screens */
+  width: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  margin-left: auto;
+  padding: 20px 0;
+  margin-top: em;
+}
+/* make aside a positioning context for animated lines */
+.side-icons {
+  position: relative;
+}
+
+/* container for the animated thin golden lines */
+.side-lines {
+  position: absolute;
+  inset: 16px 24px 16px 24px; /* keep some padding from top/bottom */
+  pointer-events: none;
+}
+
+.side-lines .line {
+  position: absolute;
+  bottom: 15em;
+  width: 1px;
+  height: 100px; /* visible rail length */
+  background: linear-gradient(
+    180deg,
+    rgb(226, 177, 102),
+    rgba(227, 191, 135, 0.6)
+  );
+  border-radius: 2px;
+  transform: translateY(250%);
+  opacity: 0;
+  animation: rise 900ms linear infinite;
+  animation-play-state: paused;
+}
+
+/* stagger positions and delays for a flowing effect */
+.side-lines .line:nth-child(1) {
+  left: 35%;
+  animation-delay: 0ms;
+}
+.side-lines .line:nth-child(2) {
+  left: 39%;
+  animation-delay: 0ms;
+}
+.side-lines .line:nth-child(3) {
+  left: 46%;
+  animation-delay: 0ms;
+}
+.side-lines .line:nth-child(4) {
+  left: 52%;
+  animation-delay: 0ms;
+}
+.side-lines .line:nth-child(5) {
+  left: 58%;
+  animation-delay: 0ms;
+}
+
+/* play animation only while hovering the whole side-icons area */
+.side-icons:hover .side-lines .line,
+.side-icons:focus-within .side-lines .line {
+  animation-play-state: running;
+  opacity: 1;
+}
+
+@keyframes rise {
+  0% {
+    transform: translateY(120%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-160%);
+    opacity: 0;
+  }
+}
+.icon-circle {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  border: 3px solid rgba(0, 0, 0, 0.6);
+}
+
+/* side images (lotus, spiral) */
+.side-icons .side-img {
+  width: 115px;
+  height: auto;
+  display: block;
+}
+
+/* About/Sections */
+.section {
+  padding: 40px;
+}
+
+/* utility class for making a section fill most of the viewport so scrolling is required */
+.full-viewport {
+  min-height: 85vh;
+  display: block;
+  /* keep content vertically spaced from top */
+  padding-top: 48px;
+  padding-bottom: 48px;
+}
+
+/* Our story page specific background and decorative icon positioning */
+.ourstory-page {
+  position: relative;
+  /* vertical gradient with the requested red/orange stop at 25% */
+  background: linear-gradient(
+    180deg,
+    rgb(255, 255, 255) 0%,
+    #fdeeeb 25%,
+    #f3d5ce 80%
+  );
+  background-repeat: no-repeat;
+}
+
+.ourstory-page .section {
+  background: transparent; /* ensure sections don't have white background */
+}
+
+.ourstory-page .decor-top-right {
+  position: absolute;
+  top: -2px;
+  right: 28px;
+  width: 210px;
+  opacity: 0.9;
+}
+
+.ourstory-page .decor-left {
+  position: absolute;
+  top: 70em;
+  left: -3em;
+  width: 210px;
+  opacity: 0.95;
+  transform: rotate(-90deg);
+}
+
+.ourstory-page .decor-bottom-right {
+  position: absolute;
+  top: 104em;
+  right: 28px;
+  width: 300px;
+  opacity: 0.9;
+}
+
+.practice-page .decor-mid-right {
+  position: absolute;
+  top: 45em;
+  right: 1px;
+  width: 100px;
+  opacity: 0.9;
+}
+
+.practice-page .decor-bottom-left {
+  position: absolute;
+  z-index: 100;
+  top: 189em;
+  right: 100em;
+  width: 400px;
+  opacity: 0.9;
+}
+
+.practice-page .decor-bottom-right {
+  position: absolute;
+  z-index: 100;
+  top: 275em;
+  right: 10em;
+  width: 400px;
+  opacity: 0.9;
+}
+
+.contact-page .decor-top-right {
+  position: absolute;
+  top: -2px;
+  right: 1px;
+  width: 250px;
+  opacity: 0.9;
+}
+
+.contact-page .decor-up-mid-right {
+  position: absolute;
+  top: 60em;
+  right: 28px;
+  width: 260px;
+  opacity: 0.9;
+}
+
+.contact-page .decor-down-mid-right {
+  position: absolute;
+  top: 80em;
+  right: 115em;
+  width: 260px;
+  opacity: 0.9;
+}
+
+.contact-page .decor-bottom-right {
+  position: absolute;
+  top: 102em;
+  right: 28px;
+  width: 270px;
+  opacity: 0.9;
+}
+
+/* make sure anchor navigation lands the heading nicely below any top chrome */
+h2 {
+  scroll-margin-top: 48px;
+}
+.section h2 {
+  font-size: 106px;
+  font-weight: 300;
+  .why-list p {
+    margin: 12px 0;
+    font-size: 22px;
+    line-height: 1.6;
+    color: #3b2b25;
+  }
+  margin: 0 0 24px;
+}
+.section p {
+  line-height: 1.6;
+  color: #6b6b6b;
+}
+
+/* Cards grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 24px;
+  height: 48em;
+}
+.card {
+  background: white;
+  padding: 56px;
+  border-radius: 86px;
+  box-shadow: 0 6px 6px rgba(0, 0, 0, 0.06);
+}
+.card h3 {
+  margin: 0 0 8px;
+}
+
+/* Courses grid: masonry-like layout for practice -> courses */
+.courses-grid {
+  display: grid;
+  /* explicit two-column layout; left column slightly narrower */
+  grid-template-columns: 1fr 1fr;
+  column-gap: 108px;
+  row-gap: 54px;
+  /* use flexible auto rows but give a minimum so cards look substantial */
+  /* grid-auto-rows: minmax(160px, 300px); */
+  align-items: start;
+}
+.courses-grid .card {
+  position: relative;
+  padding: 28px;
+  border-radius: 92px;
+  box-shadow: none;
+  background-clip: padding-box;
+}
+
+/* bottom-only soft shadow for each course card */
+.courses-grid .card::after {
+  content: "";
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: -10px;
+  height: 3em;
+  background: rgba(0, 0, 0, 0.1);
+  filter: blur(14px);
+  border-radius: 14px;
+  pointer-events: none;
+  opacity: 0.95;
+}
+.course-hero {
+  grid-column: 1 / -1;
+  /* shorten the hero so it doesn't overpower the layout */
+  height: 180px;
+}
+.course-tall {
+  grid-row: 2 / span 2;
+  height: 500px;
+}
+.course-small {
+  grid-row: 2;
+  height: 440px;
+}
+.course-medium {
+  grid-row: 3;
+  height: 360px;
+}
+.course-small2 {
+  grid-column: 1;
+  grid-row: 4;
+  height: 300px;
+}
+.course-hero {
+  grid-column: 1 / -1;
+  /* compact hero height to leave room for courses */
+  height: 140px;
+  padding-bottom: 1em;
+  margin-bottom: 32px;
+}
+.course-tall {
+  /* Course A: left column, tall, spans two grid rows */
+  grid-column: 1;
+  grid-row: 2 / span 2;
+  height: 520px;
+}
+.course-small {
+  /* Course B: top-right */
+  grid-column: 2;
+  grid-row: 2;
+  height: 240px;
+}
+.course-medium {
+  /* Course C: larger right-column card below B */
+  grid-column: 2;
+  grid-row: 3 / span 2;
+  height: 520px;
+}
+.course-small2 {
+  /* Course D: bottom-left */
+  grid-column: 1;
+  grid-row: 4;
+  height: 320px;
+}
+
+.practice-page {
+  position: relative;
+  /* vertical gradient with the requested red/orange stop at 25% */
+  background: linear-gradient(
+    180deg,
+    rgb(244, 254, 242) 0%,
+    rgb(250, 253, 249) 25%,
+    #defcd5 80%
+  );
+  background-repeat: no-repeat;
+  /* ensure the practice area leaves room so decorative elements and cards
+     don't get visually clipped by the footer; increases space at page bottom */
+  padding-bottom: 120px;
+}
+
+/* Contact page: center booking form and narrow content for a balanced layout */
+.contact-page {
+  display: block;
+}
+.contact-page #book.section,
+.contact-page #book.section.container,
+.contact-page #book {
+  display: block;
+}
+.contact-page .form-card {
+  max-width: 720px;
+  margin: 28px auto;
+}
+.contact-page .section.container {
+  max-width: 920px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.contact-page h2 {
+  /* keep the page title aligned with left edge of the centered content */
+  text-align: left;
+  margin-left: 8px;
+}
+
+/* Promo card styles for Contact page top */
+.promo-card {
+  width: 750px;
+  margin: 28px auto;
+  padding: 48px 40px;
+  border-radius: 56px;
+  text-align: center;
+  position: relative;
+}
+.promo-card .promo-icon {
+  width: 110px;
+  height: 110px;
+  margin: 8px auto 18px;
+  border-radius: 50%;
+  border: 4px solid rgba(0, 0, 0, 0.12);
+}
+.promo-card h3 {
+  margin: 6px 0 6px;
+  font-size: 32px;
+  font-weight: 300;
+}
+.promo-card .subheading {
+  margin: 6px 0 16px;
+  color: #6b6b6b;
+}
+.promo-card .promo-copy {
+  max-width: 760px;
+  margin: 8px auto 12px;
+  color: #6b6b6b;
+  line-height: 1.6;
+}
+.promo-card .btn {
+  padding: 12px 28px;
+  border-radius: 28px;
+}
+
+.go-home:active {
+  transform: translateY(-1px) scale(1.01);
+}
+.go-home:focus {
+  box-shadow: 0 0 0 4px rgba(180, 150, 120, 0.08);
+}
+
+@media (max-width: 900px) {
+  .promo-card {
+    padding: 32px 20px;
+    border-radius: 36px;
+  }
+  .promo-card .promo-icon {
+    width: 84px;
+    height: 84px;
+  }
+  .promo-card h3 {
+    font-size: 24px;
+  }
+}
+
+/* FAQ dropdown styling */
+.faq-list {
+  max-width: 920px;
+  margin: 8px auto 48px;
+}
+.faq-list details {
+  background: transparent;
+  border-radius: 8px;
+  padding: 12px 4px;
+  margin-bottom: 12px;
+}
+.faq-list summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 22px;
+  list-style: none;
+  outline: none;
+  color: #111;
+}
+.faq-list summary::-webkit-details-marker {
+  display: none;
+}
+.faq-list summary::marker {
+  display: none;
+}
+.faq-list summary::after {
+  content: "\25BC";
+  float: right;
+  transition: transform 180ms ease;
+  color: black;
+}
+.faq-list details[open] summary::after {
+  transform: rotate(180deg);
+}
+.faq-list p {
+  margin: 10px 0 0 0;
+  color: black;
+  line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+  .faq-list summary {
+    font-size: 16px;
+  }
+}
+
+.practice-page .section {
+  background: transparent; /* ensure sections don't have white background */
+}
+
+.contact-page {
+  position: relative;
+  /* vertical gradient with the requested red/orange stop at 25% */
+  background: linear-gradient(180deg, rgb(255, 255, 255) 0%, #b2c0ce 80%);
+  background-repeat: no-repeat;
+}
+
+/* Booking form */
+.form-card {
+  font-size: 2em;
+  background: white;
+  padding: 60px;
+  border-radius: 36px;
+}
+.input {
+  display: block;
+  width: 100%;
+  padding: 8px 6px;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  margin: 12px 0;
+}
+.submit {
+  margin-top: 18px;
+}
+
+/* Footer */
+.footer {
+  padding: 40px;
+  text-align: center;
+  color: var(--muted);
+  /* match the practice page bottom tone so there is no harsh white seam */
+  background: linear-gradient(180deg, rgba(244, 254, 242, 1) 0%, #defcd5 100%);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .hero {
+    flex-direction: column;
+  }
+  .hero-left {
+    /* stacked layout should use full width */
+    flex-basis: 100%;
+  }
+  .hero-quote {
+    /* allow wrapping on small screens */
+    white-space: normal;
+  }
+  .hero-title {
+    font-size: 56px;
+  }
+  .logo h1 {
+    font-size: 40px;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* small animations */
+.fade-up {
+  transform: translateY(10px);
+  opacity: 0;
+  animation: fadeUp 600ms forwards;
+}
+@keyframes fadeUp {
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@media (max-width: 900px) {
+  .courses-grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+  }
+  .course-hero,
+  .course-tall,
+  .course-small,
+  .course-medium,
+  .course-small2,
+  .course-tall-right {
+    height: auto;
+    grid-row: auto;
+    grid-column: auto;
+  }
+}
+
+/* Go home button (placed after sections) */
+
+/* Go home button (left-aligned, matches design) */
+.go-home-wrap {
+  text-align: left;
+  margin-top: 24px;
+}
+.go-home {
+  display: inline-block;
+  padding: 4px 18px;
+  border-radius: 16px;
+  border: 1px solid #d6cfc9;
+  background: #fcf7f4;
+  color: #222;
+  font-family: "Josefin Sans", Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  box-shadow: none;
+  outline: none;
+  cursor: pointer;
+  transition: box-shadow 0.18s, background 0.18s;
+}
+.go-home:hover,
+.go-home:focus {
+  background: #f5ede8;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
