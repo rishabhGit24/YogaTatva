@@ -1,18 +1,10 @@
-import { useEffect } from 'react';
 import GoHomeButton from '../components/GoHomeButton';
+import useSmoothScroll from '../hooks/useSmoothScroll';
 import lake1 from './lake1.png';
 import lake2 from './lake2.png';
 
 export default function OurStory() {
-    useEffect(() => {
-        const hash = window.location.hash;
-        if (hash) {
-            const element = document.getElementById(hash.substring(1));
-            if (element) {
-                element.scrollIntoView({ behavior: 'smooth' });
-            }
-        }
-    }, []);
+    useSmoothScroll();
 
     return (
         <div className="ourstory-page">

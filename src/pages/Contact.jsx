@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
 import GoHomeButton from '../components/GoHomeButton';
+import useSmoothScroll from '../hooks/useSmoothScroll';
 import Booking from './Booking';
 import clock from './clock.png';
 import lake1 from './lake1.png';
@@ -8,15 +8,7 @@ import lotus3 from './lotus3.png';
 import lotus4 from './lotus4.png';
 
 export default function Contact() {
-    useEffect(() => {
-        const hash = window.location.hash;
-        if (hash) {
-            const element = document.getElementById(hash.substring(1));
-            if (element) {
-                element.scrollIntoView({ behavior: 'smooth' });
-            }
-        }
-    }, []);
+    useSmoothScroll();
 
     return (
         <div className='contact-page'>
