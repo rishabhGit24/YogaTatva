@@ -39,13 +39,9 @@ export default function Home() {
                 <aside className="side-icons">
                     <div className="side-lines" aria-hidden="true">
                         <span className="line" />
-                        <span className="line" />
-                        <span className="line" />
-                        <span className="line" />
-                        <span className="line" />
                     </div>
                     <div style={{ height: 60 }} />
-                    <img src={lotus1} alt="lotus" className="side-img" />
+                    <img src={lotus1} alt="lotus" className="side-img" style={{ marginLeft: "0.5em" }} />
                     <div className="icon-circle" style={{ background: '#21311f' }}></div>
                     <div className="icon-circle" style={{ background: '#081924' }}></div>
                     <div className="icon-circle" style={{ background: '#792d1d' }}></div>

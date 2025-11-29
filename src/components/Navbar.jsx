@@ -9,9 +9,9 @@ export default function Navbar() {
                 <h1>Yoga Tatva</h1>
             </div>
             <nav className="navlinks" aria-label="Primary">
-                <Link to="/">Our Story</Link>
-                <Link to="/services">Sessions</Link>
-                <Link to="/booking">Book now</Link>
+                <Link to="/our-story">Our Story</Link>
+                <Link to="/practice">Practice</Link>
+                <Link to="/contact">Contact</Link>
             </nav>
         </header>
     )

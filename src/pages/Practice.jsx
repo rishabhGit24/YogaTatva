@@ -1,9 +1,20 @@
-import GoHomeButton from '../components/GoHomeButton'
-import ServiceCard from '../components/ServiceCard'
-import lake3 from './lake3.png'
-import lotus2 from './lotus2.png'
-import lotus3 from './lotus3.png'
+import { useEffect } from 'react';
+import GoHomeButton from '../components/GoHomeButton';
+import ServiceCard from '../components/ServiceCard';
+import lake3 from './lake3.png';
+import lotus2 from './lotus2.png';
+import lotus3 from './lotus3.png';
 export default function Practice() {
+    useEffect(() => {
+        const hash = window.location.hash;
+        if (hash) {
+            const element = document.getElementById(hash.substring(1));
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    }, []);
+
     return (
         <div className='practice-page'>
             <section id="sessions" className="section container">

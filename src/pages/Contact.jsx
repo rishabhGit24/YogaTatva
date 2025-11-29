@@ -1,12 +1,23 @@
-import GoHomeButton from '../components/GoHomeButton'
-import Booking from './Booking'
-import clock from './clock.png'
-import lake1 from './lake1.png'
-import lotus2 from './lotus2.png'
-import lotus3 from './lotus3.png'
-import lotus4 from './lotus4.png'
+import { useEffect } from 'react';
+import GoHomeButton from '../components/GoHomeButton';
+import Booking from './Booking';
+import clock from './clock.png';
+import lake1 from './lake1.png';
+import lotus2 from './lotus2.png';
+import lotus3 from './lotus3.png';
+import lotus4 from './lotus4.png';
 
 export default function Contact() {
+    useEffect(() => {
+        const hash = window.location.hash;
+        if (hash) {
+            const element = document.getElementById(hash.substring(1));
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    }, []);
+
     return (
         <div className='contact-page'>
             {/* Promo card placed above the booking form */}
@@ -14,7 +25,7 @@ export default function Contact() {
             <img src={lotus2} alt="decor" className="decor-up-mid-right" />
             <img src={lotus3} alt="decor" className="decor-down-mid-right" />
             <img src={lotus4} alt="decor" className="decor-bottom-right " />
-            <div id="book" className="section container" style={{ marginLeft: "18em" }}>
+            <div className="section container" style={{ marginLeft: "18em" }}>
                 <h2>Book now</h2>
             </div>
             <section className="section container">
