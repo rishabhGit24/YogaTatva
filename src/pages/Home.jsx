@@ -5,7 +5,7 @@ import spiral from './spiral.png'
 export default function Home() {
     return (
         <div>
-            <section className="hero container">
+            <section className="hero container" style={{ height: "100vh" }}>
                 <div className="hero-left">
                     <h2 className="hero-title">Yoga Tatva</h2>
                     <p className="hero-quote">“When every system Fails, Your conscience, clarity, and creativity Remain.”</p>
