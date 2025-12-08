@@ -869,7 +869,7 @@ body {
 
 .ourstory-page .decor-left {
   position: absolute;
-  top: 70em;
+  top: 80em;
   left: -3em;
   width: min(210px, 15vw);
   max-width: 210px;

@@ -96,7 +96,7 @@ export default function OurStory() {
                 <GoHomeButton />
             </section>
 
-            <section id="why" className="section container full-viewport">
+            <section id="why" className="section container full-viewport" style={{ marginTop: "10em" }}>
                 <h2>Why Yoga</h2>
                 <div className="why-list">
                     <p>Your journey into mind, body and emotional balance.</p>
