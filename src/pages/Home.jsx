@@ -4,11 +4,22 @@ import spiral from './spiral.png'
 
 export default function Home() {
     return (
-        <div>
-            <section className="hero container" style={{ height: "100vh" }}>
+        <div className="home-page">
+            <section className="hero container">
                 <div className="hero-left">
-                    <h2 className="hero-title">Yoga Tatva</h2>
-                    <p className="hero-quote">“When every system Fails, Your conscience, clarity, and creativity Remain.”</p>
+                    <h2 className="hero-title">Yoga Tattva</h2>
+                    <p className="hero-quote">
+                        <span className="word-animate" style={{ "--delay": "0s" }}>"When</span>{"   "}
+                        <span className="word-animate" style={{ "--delay": "0.25s" }}>every</span>{"   "}
+                        <span className="word-animate" style={{ "--delay": "0.45s" }}>system</span>{"   "}
+                        <span className="word-animate" style={{ "--delay": "0.65s" }}>Fails,</span>{"   "}
+                        <span className="word-animate" style={{ "--delay": "0.85s" }}>Your</span>{"   "}
+                        <span className="word-animate" style={{ "--delay": "1.05s" }}>conscience,</span>{"   "}
+                        <span className="word-animate" style={{ "--delay": "1.3s" }}>clarity,</span>{"   "}
+                        <span className="word-animate" style={{ "--delay": "1.55s" }}>and</span>{"   "}
+                        <span className="word-animate" style={{ "--delay": "1.8s" }}>creativity</span>{"   "}
+                        <span className="word-animate" style={{ "--delay": "2.05s" }}>Remain."</span>
+                    </p>
                     <div className="hero-buttons">
                         <div className="menu">
                             <Link to="/our-story" className="btn main-btn">Our Story</Link>
@@ -37,7 +48,7 @@ export default function Home() {
                     </div>
                 </div>
                 <aside className="side-icons">
-                    <div className="side-lines" aria-hidden="true">
+                    <div className="side-lines" aria-hidden="true" style={{ height: "100%" }}>
                         <span className="line" />
                     </div>
                     <div style={{ height: 60 }} />

@@ -1,4 +1,4 @@
-# Yoga Tatva — Frontend
+# Yoga Tattva — Frontend
 
 This is a lightweight Vite + React frontend scaffolded to match the provided Figma screenshots.
 

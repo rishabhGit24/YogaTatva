@@ -6,7 +6,7 @@ export default function Navbar() {
         <header className="navbar container">
             <div className="logo">
                 <Logo />
-                <h1>Yoga Tatva</h1>
+                <h1>Yoga Tattva</h1>
             </div>
             <nav className="navlinks" aria-label="Primary">
                 <Link to="/our-story">Our Story</Link>
