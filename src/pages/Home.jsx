@@ -27,7 +27,7 @@ export default function Home() {
             <section className="hero container" style={{ width: isMobile ? "50em" : "", marginTop: isMobile ? "-3em" : "" }}>
                 <div className="hero-left" style={{ width: isMobile ? "20em" : "", marginLeft: isMobile ? "-5em" : "" }}>
                     <h2 className="hero-title" style={{ fontSize: isMobile ? "3.5em" : "" }}>Yoga Tattva</h2>
-                    <p className="hero-quote" style={{ fontSize: isMobile ? "1.3em" : "", maxWidth: isMobile ? "90%" : "", marginTop: isMobile ? "-1em" : "", marginLeft: isMobile ? "-1.6em" : "", wordSpacing: isMobile ? "0.55em" : "0.3em" }}>
+                    <p className="hero-quote" style={{ fontSize: isMobile ? "1.3em" : "", maxWidth: isMobile ? "80%" : "", marginTop: isMobile ? "-1em" : "", marginLeft: isMobile ? "-1.6em" : "", wordSpacing: isMobile ? "0.55em" : "0.3em" }}>
                         <span className="word-animate" style={{ "--delay": "0s" }}>"When</span>{"   "}
                         <span className="word-animate" style={{ "--delay": "0.25s" }}>every</span>{"   "}
                         <span className="word-animate" style={{ "--delay": "0.45s" }}>system</span>{"   "}
@@ -66,7 +66,7 @@ export default function Home() {
                         </div>
                     </div>
                 </div>
-                <aside className="side-icons" style={{ marginLeft: isMobile ? "-18em" : "", marginTop: isMobile ? "4em" : "" }}>
+                <aside className="side-icons" style={{ marginLeft: isMobile ? "-20em" : "", marginTop: isMobile ? "4em" : "" }}>
                     <div className="side-lines" aria-hidden="true" style={{ height: "100%" }}>
                         <span className="line" />
                     </div>
