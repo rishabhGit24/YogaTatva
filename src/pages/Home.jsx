@@ -27,7 +27,7 @@ export default function Home() {
             <section className="hero container" style={{ width: isMobile ? "50em" : "", marginTop: isMobile ? "-3em" : "" }}>
                 <div className="hero-left" style={{ width: isMobile ? "20em" : "", marginLeft: isMobile ? "-5em" : "" }}>
                     <h2 className="hero-title" style={{ fontSize: isMobile ? "4.5em" : "" }}>Yoga Tattva</h2>
-                    <p className="hero-quote" style={{ fontSize: isMobile ? "1.5em" : "", marginTop: isMobile ? "-1em" : "", marginLeft: isMobile ? "-1.8em" : "", wordSpacing: isMobile ? "0.55em" : "0.3em" }}>
+                    <p className="hero-quote" style={{ fontSize: isMobile ? "1.3em" : "", maxWidth: isMobile ? "90%" : "", marginTop: isMobile ? "-1em" : "", marginLeft: isMobile ? "-1em" : "", wordSpacing: isMobile ? "0.55em" : "0.3em" }}>
                         <span className="word-animate" style={{ "--delay": "0s" }}>"When</span>{"   "}
                         <span className="word-animate" style={{ "--delay": "0.25s" }}>every</span>{"   "}
                         <span className="word-animate" style={{ "--delay": "0.45s" }}>system</span>{"   "}
@@ -39,7 +39,7 @@ export default function Home() {
                         <span className="word-animate" style={{ "--delay": "1.8s" }}>creativity</span>{"   "}
                         <span className="word-animate" style={{ "--delay": "2.05s" }}>Remain."</span>
                     </p>
-                    <div className="hero-buttons" style={{ gap: isMobile ? "2.5em" : "", display: isMobile ? "flex" : "", flexDirection: isMobile ? "column" : "", alignContent: "initial", marginTop: isMobile ? "" : "", marginLeft: isMobile ? "-7em" : "" }}>
+                    <div className="hero-buttons" style={{ gap: isMobile ? "2.5em" : "", display: isMobile ? "flex" : "", flexDirection: isMobile ? "column" : "", alignContent: "initial", marginTop: isMobile ? "-3em" : "", marginLeft: isMobile ? "-7em" : "" }}>
                         <div className="menu" style={{ display: isMobile ? "flex" : "", flexDirection: isMobile ? "column" : "" }}>
                             <Link to="/our-story" className="btn main-btn">Our Story</Link>
                             <div className="submenu" aria-hidden="true" style={{ display: isMobile ? "flex" : "" }}>
@@ -66,7 +66,7 @@ export default function Home() {
                         </div>
                     </div>
                 </div>
-                <aside className="side-icons" style={{ marginLeft: isMobile ? "-18em" : "", marginTop: isMobile ? "10em" : "" }}>
+                <aside className="side-icons" style={{ marginLeft: isMobile ? "-18em" : "", marginTop: isMobile ? "6em" : "" }}>
                     <div className="side-lines" aria-hidden="true" style={{ height: "100%" }}>
                         <span className="line" />
                     </div>
