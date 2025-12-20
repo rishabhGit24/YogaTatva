@@ -48,6 +48,21 @@ body {
   overflow: hidden;
 }
 
+@media (max-width: 768px) {
+  .home-page {
+    height: auto;
+    min-height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  .home-page .hero {
+    height: auto;
+    min-height: auto;
+    max-height: none;
+    overflow: visible;
+  }
+}
+
 /* Laptop Responsive Styles - Scale fonts proportionally */
 
 /* Very large screens (1920px+) - Base design */
