@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import GoHomeButton from '../components/GoHomeButton';
 import useSmoothScroll from '../hooks/useSmoothScroll';
 import Booking from './Booking';
@@ -10,19 +11,35 @@ import lotus4 from './lotus4.png';
 export default function Contact() {
     useSmoothScroll();
 
+    const [isMobile, setIsMobile] = useState(false); // Hook state for mobile detection
+    const [isLaptop, setIsLaptop] = useState(false); // Hook state for laptop detection
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 768); // Set mobile state based on window width
+            setIsLaptop(window.innerWidth >= 768); // Set laptop state
+        };
+
+        window.addEventListener('resize', handleResize);
+        handleResize(); // Initial check
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
     return (
         <div className='contact-page'>
             {/* Promo card placed above the booking form */}
-            <img src={lake1} alt="decor" className="decor-top-right" />
-            <img src={lotus2} alt="decor" className="decor-up-mid-right" />
-            <img src={lotus3} alt="decor" className="decor-down-mid-right" />
-            <img src={lotus4} alt="decor" className="decor-bottom-right " />
-            <div className="section container" style={{ marginLeft: "18em" }}>
-                <h2>Book now</h2>
+            <img src={lake1} alt="decor" className="decor-top-right" style={{ width: isMobile ? "30%" : "" }} />
+            <img src={lotus2} alt="decor" className="decor-up-mid-right" style={{ width: isMobile ? "45%" : "" }} />
+            <img src={lotus3} alt="decor" className="decor-down-mid-right" style={{}} />
+            <img src={lotus4} alt="decor" className="decor-bottom-right " style={{ width: isMobile ? "55%" : "", marginTop: isMobile ? "10em" : "" }} />
+            <div className="section container" style={{ marginLeft: isMobile ? "0" : "18em" }}>
+                <h2 style={{ fontSize: isMobile ? "4.3em" : "", marginLeft: isMobile ? "-1em" : "", marginTop: isMobile ? "1em" : "" }}>Book now</h2>
             </div>
-            <section className="section container">
+            <section className="section container" style={{ marginBottom: isMobile ? "8em" : "" }}>
                 <div className="promo-card card">
-                    <img src={clock} alt="decor" style={{ width: "200px" }} />
+                    <img src={clock} alt="decor" style={{ width: isMobile ? "80px" : "200px", marginLeft: isMobile ? "0" : "" }} />
                     <h3>Drop in classes</h3>
                     <p className="muted subheading">Sub-heading</p>
                     <p className="promo-copy">consectetuer adipiscing elit. Aenean . Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean . Lorem ipsum dolor sit amet, co</p>
@@ -32,7 +49,7 @@ export default function Contact() {
             </section>
             {/* Booking form (reuses existing Booking page/component) */}
             <div id="book" style={{ marginTop: "-4em" }}>
-                <Booking />
+                <Booking isMobile={isMobile} />
             </div>
 
             {/* FAQ section below booking - collapsible items */}

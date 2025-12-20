@@ -1,10 +1,27 @@
-import { useState } from 'react'
-import GoHomeButton from '../components/GoHomeButton'
+import { useEffect, useState } from 'react';
+import GoHomeButton from '../components/GoHomeButton';
 
-export default function Booking() {
+export default function Booking({ isMobile: isMobileProp }) {
   const [form, setForm] = useState({ name: '', email: '', phone: '', service: 'Drop in classes', message: '' })
   const [errors, setErrors] = useState({})
 
+  const [isMobile, setIsMobile] = useState(false); // Hook state for mobile detection
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768); // Set mobile state based on window width
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize(); // Initial check
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  // Use prop if provided, otherwise use state
+  const isMobileView = isMobileProp !== undefined ? isMobileProp : isMobile;
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value })
   }
@@ -27,7 +44,7 @@ export default function Booking() {
   return (
     <>
       <div id="book" className="section container">
-        <div className="form-card" style={{ width: "350em" }}>
+        <div className="form-card" style={{ width: isMobileView ? "100%" : "auto", maxWidth: isMobileView ? "100%" : "600px" }}>
           <h3 style={{ textAlign: 'center' }}>Get in touch!</h3>
           <form onSubmit={handleSubmit} noValidate>
             <input className="input" name="name" placeholder="Name" value={form.name} onChange={handleChange} />
@@ -41,7 +58,7 @@ export default function Booking() {
             </div>
           </form>
         </div>
-        <div style={{ marginLeft: "3em" }}><GoHomeButton /></div>
+        <div style={{ marginLeft: isMobileView ? "0" : "3em", textAlign: isMobileView ? "center" : "left" }}><GoHomeButton /></div>
       </div>
     </>
   )

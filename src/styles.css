@@ -452,12 +452,14 @@ body {
 /* Hero */
 @media (max-width: 768px) {
   .hero {
-    flex-direction: column;
+    flex-direction: row;
     padding: 5em 20px;
     min-height: auto;
+    gap: 20px;
   }
   .hero-left {
-    flex: 0 0 100%;
+    flex: 1;
+    max-width: calc(100% - 100px);
   }
   .hero-title {
     font-size: 5em;
@@ -487,6 +489,23 @@ body {
   .menu:focus-within .submenu {
     transform: none;
   }
+  .side-icons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding: 20px 0;
+    margin-left: 0;
+    flex-shrink: 0;
+  }
+  .side-icons .side-img {
+    width: 50px;
+    max-width: 50px;
+  }
+  .icon-circle {
+    width: 45px;
+    height: 45px;
+  }
 }
 
 @media (max-width: 1200px) {
@@ -505,16 +524,32 @@ body {
 @media (max-width: 480px) {
   .hero {
     padding: 3em 15px;
+    gap: 15px;
+  }
+  .hero-left {
+    max-width: calc(100% - 80px);
   }
   .hero-title {
     font-size: 3em;
   }
   .hero-quote {
     font-size: 18px;
+    padding: 20px;
   }
   .main-btn {
     font-size: 16px;
     padding: 8px 16px;
+  }
+  .side-icons {
+    gap: 12px;
+  }
+  .side-icons .side-img {
+    width: 2em;
+  }
+  .icon-circle {
+    width: 35px;
+    height: 35px;
+    border: 2px solid rgba(0, 0, 0, 0.6);
   }
 }
 
@@ -869,7 +904,7 @@ body {
 
 .ourstory-page .decor-left {
   position: absolute;
-  top: 80em;
+  top: 50em;
   left: -3em;
   width: min(210px, 15vw);
   max-width: 210px;
@@ -1102,6 +1137,8 @@ h2 {
 /* Contact page: center booking form and narrow content for a balanced layout */
 .contact-page {
   display: block;
+  width: 100%;
+  overflow-x: hidden;
 }
 .contact-page #book.section,
 .contact-page #book.section.container,
@@ -1121,6 +1158,18 @@ h2 {
   /* keep the page title aligned with left edge of the centered content */
   text-align: left;
   margin-left: 8px;
+}
+
+@media (max-width: 768px) {
+  .contact-page .section.container {
+    padding: 0 15px;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .contact-page h2 {
+    margin-left: 0;
+    text-align: center;
+  }
 }
 
 /* Promo card styles for Contact page top */
@@ -1168,6 +1217,8 @@ h2 {
 
 @media (max-width: 900px) {
   .promo-card {
+    width: 90%;
+    max-width: 500px;
     padding: 32px 20px;
     border-radius: 36px;
   }
@@ -1177,6 +1228,19 @@ h2 {
   }
   .promo-card h3 {
     font-size: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .promo-card {
+    width: 95%;
+    padding: 24px 16px;
+  }
+  .promo-card h3 {
+    font-size: 20px;
+  }
+  .promo-card .promo-copy {
+    font-size: 14px;
   }
 }
 
@@ -1243,6 +1307,8 @@ h2 {
   background: white;
   padding: 60px;
   border-radius: 36px;
+  max-width: 600px;
+  margin: 0 auto;
 }
 .input {
   display: block;
@@ -1254,6 +1320,25 @@ h2 {
 }
 .submit {
   margin-top: 18px;
+}
+
+@media (max-width: 768px) {
+  .form-card {
+    padding: 30px 20px;
+    font-size: 1.5em;
+    width: 95%;
+    max-width: 100%;
+  }
+  .form-card h3 {
+    font-size: 1.2em;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-card {
+    padding: 20px 15px;
+    font-size: 1.2em;
+  }
 }
 
 /* Footer */
@@ -1268,11 +1353,13 @@ h2 {
 /* Responsive */
 @media (max-width: 900px) {
   .hero {
-    flex-direction: column;
+    flex-direction: row;
+    gap: 20px;
   }
   .hero-left {
     /* stacked layout should use full width */
-    flex-basis: 100%;
+    flex: 1;
+    max-width: calc(100% - 100px);
   }
   .hero-quote {
     /* allow wrapping on small screens */
@@ -1286,6 +1373,10 @@ h2 {
   }
   .grid {
     grid-template-columns: 1fr;
+  }
+  .side-icons {
+    display: flex;
+    flex-shrink: 0;
   }
 }
 
